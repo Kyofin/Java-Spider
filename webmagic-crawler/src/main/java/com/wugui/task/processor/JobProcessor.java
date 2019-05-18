@@ -1,7 +1,9 @@
-package com.wugui.task;
+package com.wugui.task.processor;
 
 import java.util.List;
 
+import com.wugui.task.MathSalary;
+import com.wugui.task.pipeline.JobInfoJPAPipeline;
 import org.jsoup.Jsoup;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -9,22 +11,28 @@ import org.springframework.stereotype.Component;
 
 import com.wugui.pojo.JobInfo;
 
+import redis.clients.jedis.JedisPool;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.BloomFilterDuplicateRemover;
-import us.codecraft.webmagic.scheduler.QueueScheduler;
+import us.codecraft.webmagic.scheduler.RedisScheduler;
 import us.codecraft.webmagic.selector.Html;
 import us.codecraft.webmagic.selector.Selectable;
 
+/**
+* 爬取51job招聘信息
+*
+* @author: huzekang
+* @Date: 2019-05-18
+*/
 @Component
 public class JobProcessor implements PageProcessor {
 
 	private String url = "https://search.51job.com/list/000000,000000,0000,01%252C32,9,99,java,2,1.html?lang=c&stype=&postchannel=0000&workyear=99&cotype=99&degreefrom=99&jobterm=99&companysize=99&providesalary=99&lonlat=0%2C0&radius=-1&ord_field=0&confirmdate=9&fromType=&dibiaoid=0&address=&line=&specialarea=00&from=&welfare=";
 	
 	@Autowired
-	private SpringDataPipeline springDataPipeline;
+	private JobInfoJPAPipeline jobInfoJPAPipeline;
 
 	@Override
 	public void process(Page page) {
@@ -36,7 +44,6 @@ public class JobProcessor implements PageProcessor {
 				// 如果为空，表示这是招聘信息详情页,保存信息详情
 				this.saveJobInfo(page);
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		} else {
@@ -140,14 +147,20 @@ public class JobProcessor implements PageProcessor {
 		return site;
 	}
 
+	/**
+	* 定时爬取最新的数据
+	*
+	* @author: huzekang
+	* @Date: 2019-05-18
+	*/
 	@Scheduled(initialDelay = 1, fixedDelay = 1000 * 100)
-	public void process() {
-		
+	public void start() {
+
 		Spider.create(new JobProcessor())
 				.addUrl(url)
-				.addPipeline(springDataPipeline)
-				.setScheduler(new QueueScheduler().setDuplicateRemover(new BloomFilterDuplicateRemover(10000000)))
-				.thread(5)
+				.setScheduler(new RedisScheduler(new JedisPool("127.0.0.1",6379)))				.thread(5)
+				.addPipeline(jobInfoJPAPipeline)
+				.thread(8)
 				.run();
 
 	}

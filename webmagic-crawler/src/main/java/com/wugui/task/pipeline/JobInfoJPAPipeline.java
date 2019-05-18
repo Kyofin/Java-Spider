@@ -1,4 +1,4 @@
-package com.wugui.task;
+package com.wugui.task.pipeline;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -11,7 +11,7 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 @Component
-public class SpringDataPipeline implements Pipeline {
+public class JobInfoJPAPipeline implements Pipeline {
 
 	@Autowired
 	private JobInfoService jobInfoService;
