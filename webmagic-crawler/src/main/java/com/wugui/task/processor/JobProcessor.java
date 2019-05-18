@@ -124,11 +124,11 @@ public class JobProcessor implements PageProcessor {
 	        jobInfo.setSalaryMax(1);
 		}
         //获取发布时间
-        String s1 = html.css("div.cn p.msg").toString();
-        s1 = s1.substring(s1.lastIndexOf(";")+1);//;12-12发布</p>
+        String s1 = html.css("div.cn p.msg").xpath("tidyText()").regex("\\d+-\\d+发布").toString();
+        s1 = s1.substring(0,s1.lastIndexOf("发布"));
         		
         String time = Jsoup.parse(s1).text();
-        jobInfo.setTime(time.substring(0,time.length()-2));
+        jobInfo.setTime(time);
         
 		// 保存数据
 		page.putField("jobInfo", jobInfo);
