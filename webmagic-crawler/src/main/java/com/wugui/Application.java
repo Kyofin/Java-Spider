@@ -1,5 +1,6 @@
 package com.wugui;
 
+import com.wugui.task.processor.CsdnBlogPageProcessor;
 import com.wugui.task.processor.GithubRepoProcessor;
 import com.wugui.task.processor.JobProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class Application implements CommandLineRunner {
 	GithubRepoProcessor githubRepoProcessor;
 
 	@Autowired
+	CsdnBlogPageProcessor csdnBlogPageProcessor;
+
+	@Autowired
 	JobProcessor jobProcessor;
 
 	public static void main(String[] args) {
@@ -25,6 +29,9 @@ public class Application implements CommandLineRunner {
 
 	@Override
 	public void run(String... args) throws Exception {
-		githubRepoProcessor.start();
+//		githubRepoProcessor.start();
+//		jobProcessor.start();
+		csdnBlogPageProcessor.start();
 	}
+
 }

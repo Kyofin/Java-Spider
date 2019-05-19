@@ -43,3 +43,21 @@ create table job_info
 );
 
 
+create table csdnblog
+(
+  key_id serial not null
+    constraint csdnblog_pkey
+    primary key,
+  id integer,
+  title varchar(255) ,
+  date varchar(255) ,
+  tags varchar(255),
+  category varchar(255) ,
+  view integer,
+  comments integer,
+  copyright integer
+);
+
+
+
+

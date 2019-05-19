@@ -153,7 +153,7 @@ public class JobProcessor implements PageProcessor {
 	* @author: huzekang
 	* @Date: 2019-05-18
 	*/
-	@Scheduled(initialDelay = 1, fixedDelay = 1000 * 100)
+//	@Scheduled(initialDelay = 1, fixedDelay = 1000 * 100)
 	public void start() {
 
 		Spider.create(new JobProcessor())
