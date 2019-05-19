@@ -1,4 +1,3 @@
-select * from user;
 CREATE TABLE `jd_item` (
   `id` bigint(10) NOT NULL AUTO_INCREMENT COMMENT '主键id',
   `spu` bigint(15) DEFAULT NULL COMMENT '商品集合id',

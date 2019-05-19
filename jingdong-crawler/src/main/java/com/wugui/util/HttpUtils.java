@@ -4,15 +4,23 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.util.UUID;
 
+import com.google.common.collect.Lists;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.apache.http.impl.conn.PoolingHttpClientConnectionManager;
+import org.apache.http.message.BasicHeader;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
+/**
+* 自定义http工具
+*
+* @author: huzekang
+* @Date: 2019-05-19
+*/
 @Component
 public class HttpUtils {
 	private PoolingHttpClientConnectionManager cm;
@@ -32,7 +40,9 @@ public class HttpUtils {
      * @return 页面数据
      */
 	public String getHtml(String url) {
-		CloseableHttpClient client = HttpClients.custom().setConnectionManager(this.cm).build();
+		CloseableHttpClient client = HttpClients.custom()
+				.setDefaultHeaders(Lists.newArrayList(new BasicHeader("User-Agent","Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36")))
+				.setConnectionManager(this.cm).build();
 		HttpGet httpGet = new HttpGet(url);
 		// 设置请求参数RequestConfig
 		httpGet.setConfig(this.getConfig());
@@ -91,9 +101,14 @@ public class HttpUtils {
 				String extName = url.substring(url.lastIndexOf("."));
 				// 使用uuid生成图片名
 				String imageName = UUID.randomUUID().toString() + extName;
-				FileOutputStream out = new FileOutputStream(new File("D:\\images\\" + imageName));
+				File dir = new File("./images/");
+				if (!dir.exists()) {
+					dir.mkdirs();
+				}
+				File targetFile = new File("./images/" + imageName);
+				FileOutputStream out = new FileOutputStream(targetFile);
 				response.getEntity().writeTo(out);
-				return imageName;
+				return targetFile.getPath();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

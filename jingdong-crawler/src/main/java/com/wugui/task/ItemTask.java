@@ -34,7 +34,7 @@ public class ItemTask {
 		String url = "https://search.jd.com/Search?keyword=%E6%89%8B%E6%9C%BA&enc=utf-8&qrst=1&rt=1&stop=1&vt=2&wq=%E6%89%8B%E6%9C%BA&cid2=653&cid3=655&s=300&click=0&page=";
 
 		// 按照页面对手机的搜索结果进行遍历解析
-		for (int i = 1; i < 10; i = i + 2) {
+		for (int i = 1; i < 200; i = i + 2) {
 			String html = httpUtils.getHtml(url + i);
 
 			// 解析页面，获取商品数据并存储
