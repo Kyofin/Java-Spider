@@ -88,8 +88,8 @@ public class ItemTask {
 					System.out.println("picUrl:" + picUrl);
 					String picName;
 					if (!"https:".equals(picUrl)) {
-						picName = this.httpUtils.getImage(picUrl);
-						item.setPic(picName);
+//						picName = this.httpUtils.getImage(picUrl);
+						item.setPic(picUrl);
 					}
 
 					// 获取商品的价格
