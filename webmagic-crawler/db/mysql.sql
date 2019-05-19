@@ -1,4 +1,4 @@
-create table dataset.github_repo
+create table github_repo
 (
   id bigint auto_increment
     primary key,
@@ -8,7 +8,7 @@ create table dataset.github_repo
   url varchar(500) null
 );
 
-create table dataset.github_user
+create table github_user
 (
   id bigint auto_increment
     primary key,
@@ -21,7 +21,7 @@ create table dataset.github_user
   user_profile text null
 );
 
-create table dataset.job_info
+create table job_info
 (
   id bigint auto_increment
     primary key,
