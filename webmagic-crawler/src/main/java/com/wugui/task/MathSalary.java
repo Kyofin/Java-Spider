@@ -17,6 +17,7 @@ public class MathSalary {
         //0.8-1.2万/月
         //5-8千/月
         //5-6万/年
+        //todo fix: String index out of range
         String date = salaryStr.substring(salaryStr.length() - 1, salaryStr.length());
         //如果是按天，则直接乘以240进行计算
         if (!"月".equals(date) && !"年".equals(date)) {
