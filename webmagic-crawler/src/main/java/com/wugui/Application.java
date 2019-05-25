@@ -2,6 +2,7 @@ package com.wugui;
 
 import com.wugui.task.processor.CsdnBlogPageProcessor;
 import com.wugui.task.processor.GithubRepoProcessor;
+import com.wugui.task.processor.HITAProcessor;
 import com.wugui.task.processor.JobProcessor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -22,6 +23,9 @@ public class Application implements CommandLineRunner {
 	@Autowired
 	JobProcessor jobProcessor;
 
+	@Autowired
+	HITAProcessor hitaProcessor;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		SpringApplication.run(Application.class, args);
@@ -31,7 +35,9 @@ public class Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 //		githubRepoProcessor.start();
 //		jobProcessor.start();
-		csdnBlogPageProcessor.start();
+//		csdnBlogPageProcessor.start();
+		hitaProcessor.start();
 	}
+
 
 }
