@@ -10,6 +10,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+/**
+ * @author huzekang
+ */
 @SpringBootApplication
 @EnableScheduling
 public class Application implements CommandLineRunner {
@@ -27,7 +30,6 @@ public class Application implements CommandLineRunner {
 	HITAProcessor hitaProcessor;
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
 		SpringApplication.run(Application.class, args);
 	}
 
@@ -36,7 +38,7 @@ public class Application implements CommandLineRunner {
 //		githubRepoProcessor.start();
 //		jobProcessor.start();
 //		csdnBlogPageProcessor.start();
-		hitaProcessor.start();
+//		hitaProcessor.start();
 	}
 
 
