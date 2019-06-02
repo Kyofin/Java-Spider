@@ -117,7 +117,7 @@ public class CsdnBlogPageProcessor implements PageProcessor {
 		Spider.create(new CsdnBlogPageProcessor())
 				.addUrl("http://blog.csdn.net/" + username)
 				// 在列表页面，分页div是用js加载出来的，所以采用phantomJs来模拟浏览器获取<div class="pagination-box" id="pageBox">完整的标签
-				// 这里需要下载phantomJs到本地，并指定一个运行脚本。可参考该类的方法注释。
+				// 这里需要下载phantomJs到本地，并指定一个运行脚本。可参考PhantomJSDownloader的方法注释。
 				.setDownloader(new PhantomJSDownloader("/Users/huzekang/opt/phantomjs-2.1.1-macosx/bin/phantomjs",
 						"/Users/huzekang/opt/phantomjs-2.1.1-macosx/bin/crawl.js"))
 				.setPipelines(Lists.newArrayList(new CsdnRepoJPAPipeline()))

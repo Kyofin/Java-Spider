@@ -1,5 +1,6 @@
 package com.wugui.task.pipeline;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,6 +12,7 @@ import us.codecraft.webmagic.Task;
 import us.codecraft.webmagic.pipeline.Pipeline;
 
 @Component
+@Slf4j
 public class JobInfoJPAPipeline implements Pipeline {
 
 	@Autowired
@@ -19,11 +21,15 @@ public class JobInfoJPAPipeline implements Pipeline {
 	
 	@Override
 	public void process(ResultItems resultItems, Task task) {
-		// TODO Auto-generated method stub
 		JobInfo jobInfo = resultItems.get("jobInfo");
-		
+
+
 		if(jobInfo != null) {
-			this.jobInfoService.save(jobInfo);
+			try {
+				this.jobInfoService.save(jobInfo);
+			} catch (Exception e) {
+				log.error(jobInfo.toString());
+			}
 		}
 	}
 

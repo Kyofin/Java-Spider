@@ -3,10 +3,7 @@ package com.wugui.pojo;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -17,6 +14,10 @@ public class GithubRepo {
 	private Long id;
 	private String repoAuthor;
 	private String repoName;
+	/**
+	 * 定义数据库列字段类型为text
+	 */
+	@Column(columnDefinition = "text")
 	private String repoReadme;
 	private String url;
 
