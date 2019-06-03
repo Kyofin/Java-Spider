@@ -1,18 +1,20 @@
 ## 项目结构
 
+```
 ├── Readme.md
-├── jingdong-crawler   	**使用httpclient进行原生爬虫**🕷
+├── jingdong-crawler   	**使用httpclient进行原生爬虫**
 │   ├── db
 │   ├── jingdong-crawler.iml
 │   ├── pom.xml
 │   ├── src
 │   └── target
-└── webmagic-crawler  	**使用webmagic框架进行爬虫**🕷
+└── webmagic-crawler  	**使用webmagic框架进行爬虫**
     ├── db
     ├── pom.xml
     ├── src
     ├── target
     └── webmagic-crawler.iml
+```
 
 
 
