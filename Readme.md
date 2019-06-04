@@ -35,6 +35,8 @@
 * [x] 京东手机数据爬虫
 
 * [ ] hita元数据服务爬虫
+  
+  ![](https://raw.githubusercontent.com/huzekang/picbed/master/20190604121934.png)
 
 
 

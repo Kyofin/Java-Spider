@@ -161,7 +161,7 @@ public class JobProcessor implements PageProcessor {
 				.setScheduler(new RedisScheduler(new JedisPool("127.0.0.1",6379)))				.thread(5)
 				.addPipeline(jobInfoJPAPipeline)
 				.thread(8)
-				.run();
+				.runAsync();
 
 	}
 

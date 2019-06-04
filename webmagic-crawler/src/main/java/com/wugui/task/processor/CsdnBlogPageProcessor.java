@@ -122,7 +122,7 @@ public class CsdnBlogPageProcessor implements PageProcessor {
 						"/Users/huzekang/opt/phantomjs-2.1.1-macosx/bin/crawl.js"))
 				.setPipelines(Lists.newArrayList(new CsdnRepoJPAPipeline()))
 				.thread(5)
-				.run();
+				.runAsync();
 		endTime = System.currentTimeMillis();
 		System.out.println("【爬虫结束】共抓取" + size + "篇文章，耗时约" + ((endTime - startTime) / 1000) + "秒，已保存到数据库，请查收！");
 	}

@@ -8,12 +8,10 @@ import com.wugui.task.HttpClientDownloader;
 import com.wugui.task.pipeline.HITADatasetJPAPipeline;
 import org.apache.commons.collections.CollectionUtils;
 import org.springframework.stereotype.Component;
-import redis.clients.jedis.JedisPool;
 import us.codecraft.webmagic.Page;
 import us.codecraft.webmagic.Site;
 import us.codecraft.webmagic.Spider;
 import us.codecraft.webmagic.processor.PageProcessor;
-import us.codecraft.webmagic.scheduler.RedisScheduler;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,7 +19,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
- * HITA 元数据服务爬取
+ * HITA 元数据服务 - 数据集爬取
  *
  * 1. 数据集列表页面 参考http://meta.omaha.org.cn/dataSet/?pageNo=1
  *
@@ -40,7 +38,7 @@ import java.util.stream.IntStream;
  * @create: 2019-05-25 10:27
  **/
 @Component
-public class HITAProcessor implements PageProcessor {
+public class HITADatasetProcessor implements PageProcessor {
 
 
     public static final String DATA_SET_PAGE_URL = "http://meta.omaha.org.cn/dataSet";
@@ -226,7 +224,7 @@ public class HITAProcessor implements PageProcessor {
 
 
     public void start() {
-        Spider.create(new HITAProcessor())
+        Spider.create(new HITADatasetProcessor())
                 // 设置download解决官方webMagic无法访问部分ssl网站问题
                 .setDownloader(new HttpClientDownloader())
                 .setPipelines(Lists.newArrayList(new HITADatasetJPAPipeline()))
@@ -237,7 +235,7 @@ public class HITAProcessor implements PageProcessor {
 //                .addUrl("http://meta.omaha.org.cn/elementOfSetList/get?subset=&dataSetCode=HDSB02.03&pageNo=1")
 //                .setScheduler(new RedisScheduler(new JedisPool("127.0.0.1",6379)))
                 .thread(9)
-                .run();
+                .runAsync();
 
     }
 }
