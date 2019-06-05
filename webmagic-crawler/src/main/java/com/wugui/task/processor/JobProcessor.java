@@ -158,7 +158,7 @@ public class JobProcessor implements PageProcessor {
 
 		Spider.create(new JobProcessor())
 				.addUrl(url)
-				.setScheduler(new RedisScheduler(new JedisPool("127.0.0.1",6379)))				.thread(5)
+				.setScheduler(new RedisScheduler(new JedisPool("127.0.0.1",6379)))
 				.addPipeline(jobInfoJPAPipeline)
 				.thread(8)
 				.runAsync();
