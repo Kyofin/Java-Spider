@@ -1,9 +1,8 @@
 package com.wugui.dao;
 
-import com.wugui.pojo.DatasetContent;
-import com.wugui.pojo.RangeCodeContent;
+import com.wugui.pojo.RangeCode;
 import org.springframework.data.repository.CrudRepository;
 
 
-public interface RangeCodeContentDao extends CrudRepository<RangeCodeContent,Integer> {
+public interface RangeCodeContentDao extends CrudRepository<RangeCode,Integer> {
 }

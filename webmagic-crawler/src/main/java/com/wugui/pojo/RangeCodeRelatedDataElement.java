@@ -34,4 +34,9 @@ public class RangeCodeRelatedDataElement {
     @Column(name = "range_code_id")
     private Long rangeCodeId;
 
+    /**
+     * 爬取地址
+     */
+    private String url;
+
 }

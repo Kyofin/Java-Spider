@@ -17,7 +17,7 @@ import java.util.List;
 @Data
 @Accessors(chain = true)
 @Entity
-public class RangeCodeContent {
+public class RangeCode {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

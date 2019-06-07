@@ -1,9 +1,6 @@
 package com.wugui;
 
-import com.wugui.task.processor.CsdnBlogPageProcessor;
-import com.wugui.task.processor.GithubRepoProcessor;
-import com.wugui.task.processor.HITAProcessor;
-import com.wugui.task.processor.JobProcessor;
+import com.wugui.task.processor.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -27,7 +24,10 @@ public class Application implements CommandLineRunner {
 	JobProcessor jobProcessor;
 
 	@Autowired
-	HITAProcessor hitaProcessor;
+    HITADatasetProcessor hitaDatasetProcessor;
+
+    @Autowired
+    HITARangeCodeProcessor hitaRangeCodeProcessor;
 
 	public static void main(String[] args) {
 		SpringApplication.run(Application.class, args);
@@ -38,7 +38,8 @@ public class Application implements CommandLineRunner {
 //		githubRepoProcessor.start();
 //		jobProcessor.start();
 //		csdnBlogPageProcessor.start();
-//		hitaProcessor.start();
+//		hitaDatasetProcessor.start();
+        hitaRangeCodeProcessor.start();
 	}
 
 
