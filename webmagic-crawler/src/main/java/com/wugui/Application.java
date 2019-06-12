@@ -39,7 +39,7 @@ public class Application implements CommandLineRunner {
 //		jobProcessor.start();
 //		csdnBlogPageProcessor.start();
 //		hitaDatasetProcessor.start();
-        hitaRangeCodeProcessor.start();
+//        hitaRangeCodeProcessor.start();
 	}
 
 

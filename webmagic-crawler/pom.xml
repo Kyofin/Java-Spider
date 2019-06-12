@@ -70,7 +70,7 @@
 		<dependency>
 			<groupId>com.google.guava</groupId>
 			<artifactId>guava</artifactId>
-			<version>16.0</version>
+			<version>24.0-jre</version>
 		</dependency>
 
 		<!--工具包 -->
@@ -104,6 +104,13 @@
 					<artifactId>activation</artifactId>
 					<version>1.1.1</version>
 				</dependency>
+
+		<dependency>
+			<groupId>org.seleniumhq.selenium</groupId>
+			<artifactId>selenium-java</artifactId>
+			<version>3.4.0</version>
+		</dependency>
+
 	</dependencies>
 	<build>
 		<plugins>
