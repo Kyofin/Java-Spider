@@ -1,16 +1,11 @@
 package com.wugui.seleuimn;
 
-import com.wugui.Application;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ActiveProfiles;
-import org.springframework.test.context.junit4.SpringRunner;
 
 /**
  * 使用selenium+ chrome
@@ -30,9 +25,7 @@ import org.springframework.test.context.junit4.SpringRunner;
  *
  * todo 学习使用stand
  **/
-@ActiveProfiles({"pg"})// 选择激活的profile
-@RunWith(SpringRunner.class)
-@SpringBootTest(classes = Application.class)
+
 @Slf4j
 public class SeleniumChromeTest {
     @Test
