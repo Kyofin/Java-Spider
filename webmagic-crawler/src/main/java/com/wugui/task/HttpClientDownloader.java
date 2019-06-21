@@ -55,13 +55,13 @@ public class HttpClientDownloader extends AbstractDownloader {
 
     private CloseableHttpClient getHttpClient(Site site) {
         if (site == null) {
-            return this.httpClientGenerator.getClient((Site)null);
+            return this.httpClientGenerator.getClient(null);
         } else {
             String domain = site.getDomain();
-            CloseableHttpClient httpClient = (CloseableHttpClient)this.httpClients.get(domain);
+            CloseableHttpClient httpClient = this.httpClients.get(domain);
             if (httpClient == null) {
                 synchronized(this) {
-                    httpClient = (CloseableHttpClient)this.httpClients.get(domain);
+                    httpClient = this.httpClients.get(domain);
                     if (httpClient == null) {
                         httpClient = this.httpClientGenerator.getClient(site);
                         this.httpClients.put(domain, httpClient);
@@ -73,6 +73,7 @@ public class HttpClientDownloader extends AbstractDownloader {
         }
     }
 
+    @Override
     public Page download(Request request, Task task) {
         if (task != null && task.getSite() != null) {
             CloseableHttpResponse httpResponse = null;
@@ -110,6 +111,7 @@ public class HttpClientDownloader extends AbstractDownloader {
         }
     }
 
+    @Override
     public void setThread(int thread) {
         this.httpClientGenerator.setPoolSize(thread);
     }
