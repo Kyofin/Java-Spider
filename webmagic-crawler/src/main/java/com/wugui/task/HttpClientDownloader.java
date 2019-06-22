@@ -73,17 +73,25 @@ public class HttpClientDownloader extends AbstractDownloader {
         }
     }
 
+    /**
+     *  task对象可以获取site和schedule对象。![](https://i.loli.net/2019/06/22/5d0de42b1a70c18290.png)
+     *
+     */
     @Override
     public Page download(Request request, Task task) {
         if (task != null && task.getSite() != null) {
             CloseableHttpResponse httpResponse = null;
             CloseableHttpClient httpClient = this.getHttpClient(task.getSite());
+
+            // 设置代理
             Proxy proxy = this.proxyProvider != null ? this.proxyProvider.getProxy(task) : null;
+            // 此处获取site的信息设置到HttpClientRequestContext对象中，site中自定义的header也会保存在这个对象中
             HttpClientRequestContext requestContext = this.httpUriRequestConverter.convert(request, task.getSite(), proxy);
             Page page = Page.fail();
 
             Page var9;
             try {
+                // 执行请求，等待响应
                 httpResponse = httpClient.execute(requestContext.getHttpUriRequest(), requestContext.getHttpClientContext());
                 page = this.handleResponse(request, request.getCharset() != null ? request.getCharset() : task.getSite().getCharset(), httpResponse, task);
                 this.onSuccess(request);
