@@ -21,7 +21,9 @@ public class UseProxyProcessor implements PageProcessor {
 
     @Override
     public Site getSite() {
-        return Site.me();
+        return Site.me()
+                .setUserAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.131 Safari/537.36");
+
     }
 
     public static void main(String[] args) {
