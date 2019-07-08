@@ -175,6 +175,8 @@ public class HITADatasetProcessor implements PageProcessor {
                     // 内部标识符
                     datasetContentElement = new DatasetContentElement();
                     datasetContentElement.setInternalIdentifier(tableCellStrings.get(i));
+                    // 数据集title
+                    datasetContentElement.setDatasetTitle(getDatasetTitle(page));
                     break;
                 case 1:
                     // 数据元名称
@@ -213,6 +215,16 @@ public class HITADatasetProcessor implements PageProcessor {
         // 将该页全部数据元放入pipeline，后续入库
         if (CollectionUtils.isNotEmpty(datasetContentElementList)) {
             page.putField(KEY_DATASET_CONTENT_ELEMENT_LIST, datasetContentElementList);
+        }
+    }
+
+    private String getDatasetTitle(Page page) {
+
+        String originTitle = page.getHtml().xpath("/html/body/div[2]/div[1]/div[1]/span/text()").toString();
+        if (originTitle.contains("全部数据元")) {
+            return originTitle.replaceAll(" 数据集  >  ", "").replace("  > 全部数据元 ", "");
+        } else {
+            return originTitle.replaceAll(" 数据集  >  ", "");
         }
     }
 

@@ -70,4 +70,10 @@ public class DatasetContentElement {
      * 爬取页面url
      */
     private String url;
+
+    /**
+     * 页面上数据集名称，如：
+     *      数据集  >  住院病程记录基本数据集  > 首次病程记录子集
+     */
+    private String datasetTitle;
 }
